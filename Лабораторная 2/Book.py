@@ -14,7 +14,7 @@ class Book:
         return f"Книга \"{self.name}\""
 
     def __repr__(self):
-        return f"Book(id_={self.id_}, name='{self.name}', pages={self.pages})"
+        return f"{self.__class__.__name__}(id_={self.id_}, name='{self.name}', pages={self.pages})"
 
 
 if __name__ == "__main__":
