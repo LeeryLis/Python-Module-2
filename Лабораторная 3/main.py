@@ -10,37 +10,55 @@ class Book:
     def __repr__(self):
         return f"{self.__class__.__name__}(name={self._name!r}, author={self._author!r})"
 
+    @property
+    def name(self) -> str:
+        return self._name
+
+    @property
+    def author(self) -> str:
+        return self._author
+
 
 class PaperBook(Book):
     def __init__(self, name: str, author: str, pages: int):
         super().__init__(name, author)
-        self._init_pages(pages)
-
-    def _init_pages(self, pages):
-        if not isinstance(pages, int):
-            raise ValueError("Число страниц должно быть целым числом (int)")
-        if pages <= 0:
-            raise ValueError("Число страниц должно быть положительным числом")
         self.pages = pages
 
     def __repr__(self):
         return f"{self.__class__.__name__}(name={self._name!r}, author={self._author!r}, pages={self.pages})"
 
+    @property
+    def pages(self) -> int:
+        return self._pages
+
+    @pages.setter
+    def pages(self, new_pages):
+        if not isinstance(new_pages, int):
+            raise ValueError("Число страниц должно быть целым числом (int)")
+        if new_pages <= 0:
+            raise ValueError("Число страниц должно быть положительным числом")
+        self._pages = new_pages
+
 
 class AudioBook(Book):
     def __init__(self, name: str, author: str, duration: float):
         super().__init__(name, author)
-        self._init_duration(duration)
-
-    def _init_duration(self, duration):
-        if not isinstance(duration, (float, int)):
-            raise ValueError("Продолжительность книги должна быть числом (float или int)")
-        if duration <= 0:
-            raise ValueError("Продолжительность книги должна быть положительным числом")
         self.duration = duration
 
     def __repr__(self):
         return f"{self.__class__.__name__}(name={self._name!r}, author={self._author!r}, duration={self.duration})"
+
+    @property
+    def duration(self) -> float:
+        return self._duration
+
+    @duration.setter
+    def duration(self, new_duration):
+        if not isinstance(new_duration, (float, int)):
+            raise ValueError("Продолжительность книги должна быть числом (float или int)")
+        if new_duration <= 0:
+            raise ValueError("Продолжительность книги должна быть положительным числом")
+        self._duration = new_duration
 
 
 if __name__ == "__main__":
